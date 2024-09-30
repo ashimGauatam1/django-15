@@ -2,10 +2,13 @@ from django.shortcuts import render,redirect
 from ..models import Blogs
 from django.contrib.auth.decorators import login_required
 def home(request):
-    return render(request,'main/home.html')
+    blogs=Blogs.objects.all()
+    print(blogs)
+    return render(request,'main/home.html',{'blog':blogs})
 
 def single_blog(request):
     return render(request,'main/single_blog.html')
+
 @login_required
 def create_blog(request):
      if request.method == "POST":
